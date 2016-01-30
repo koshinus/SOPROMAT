@@ -5,17 +5,17 @@
 #include <omp.h>
 #include <mkl.h>
 #define EXPERIMENTS_NUM  10
-#define ARRAY_SIZE 1000
+#define ARRAY_SIZE 10000
 
 void hard_omp()
 {
-    char *results_file = "hard_omp.txt";
+    /*char *results_file = "hard_omp.txt";
     FILE *res;
     if((res=fopen(results_file, "w"))==NULL)
     {
         printf("Can't open file %s.\n", results_file);
         exit(1);
-    }
+    }*/
     for(int i = 10; i < ARRAY_SIZE; i*=10)
     {
 	VSLStreamStatePtr stream;
@@ -26,19 +26,18 @@ void hard_omp()
         ar3 = (double *)malloc(i*sizeof(double));
         ar4 = (double *)malloc(i*sizeof(double));
         vdRngGaussian( VSL_RNG_METHOD_GAUSSIAN_BOXMULLER, stream,
-                        ARRAY_SIZE, ar1, 1.0, 3.0 );
+                	i, ar1, 1.0, 3.0 );
         vdRngGaussian( VSL_RNG_METHOD_GAUSSIAN_BOXMULLER, stream,
-    			ARRAY_SIZE, ar2, 1.0, 3.0 );
+    			i, ar2, 1.0, 3.0 );
         vdRngGaussian( VSL_RNG_METHOD_GAUSSIAN_BOXMULLER, stream,
-                        ARRAY_SIZE, ar3, 1.0, 3.0 );
+                        i, ar3, 1.0, 3.0 );
         vdRngGaussian( VSL_RNG_METHOD_GAUSSIAN_BOXMULLER, stream,
-                        ARRAY_SIZE, ar4, 1.0, 3.0 );
+                        i, ar4, 1.0, 3.0 );
         double start = omp_get_wtime();
-        #pragma omp parallel for
         for(int j = 0; j < EXPERIMENTS_NUM; j++)
         {
     	    #pragma omp parallel for shared(ar1,ar2,ar3,ar4)
-            for(int k = 0; k < ARRAY_SIZE; k++)
+            for(int k = 0; k < i; k++)
             {
                 ar1[k] = cos(ar1[k]);
                 ar2[k] = log(ar2[k]);
@@ -48,8 +47,9 @@ void hard_omp()
         }
         double end = omp_get_wtime();
         free(ar1); free(ar2); free(ar3); free(ar4);
-        fprintf(res, "%lf\n", end-start);
+        //fprintf(res, "%lf\n", end-start);
+        printf("%lf\n", end-start);
         vslDeleteStream( &stream );
     }
-    fclose(res);
+    //fclose(res);
 }
