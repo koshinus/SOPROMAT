@@ -5,8 +5,8 @@
 #include <omp.h>
 #include <mkl.h>
 #include "func.h"
-#define ROW 1000
-#define COL 1000
+#define ROW 10000
+#define COL 10000
                 				    
 void mult_mat_vec_mkl()
 {
@@ -17,9 +17,9 @@ void mult_mat_vec_mkl()
 		printf("Can't open file %s.\n", results_file);
 		exit(1);
 	}*/
-	for(int i = 10; i < ROW; i*=10)
+	for(int i = 10; i <= ROW; i*=10)
 	{
-		for(int j = 10; j < COL; j*=10)
+		for(int j = 10; j <= COL; j*=10)
 		{
 			double *A = get_vector(i*j,i);
 			double *X = get_vector(j,i*j);

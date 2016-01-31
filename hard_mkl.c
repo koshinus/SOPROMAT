@@ -5,7 +5,7 @@
 #include <omp.h>
 #include <mkl.h>
 #define EXPERIMENTS_NUM  10
-#define ARRAY_SIZE 10000
+#define ARRAY_SIZE 100000000
 
 void hard_mkl()
 {
@@ -16,7 +16,7 @@ void hard_mkl()
         printf("Can't open file %s.\n", results_file);
         exit(1);
     }*/
-    for(int i = 10; i < ARRAY_SIZE; i*=10)
+    for(int i = 10; i <= ARRAY_SIZE; i*=10)
     {
 	VSLStreamStatePtr stream;
 	vslNewStream( &stream, VSL_BRNG_MT19937, i*time(0) );

@@ -5,8 +5,8 @@
 #include <omp.h>
 #include <mkl.h>
 #include "func.h"
-#define ROW 100
-#define COL 100
+#define ROW 10000
+#define COL 10000
                 				    
 void mat_x_mat_omp()
 {
@@ -17,9 +17,9 @@ void mat_x_mat_omp()
 		printf("Can't open file %s.\n", results_file);
 		exit(1);
 	}*/
-	for(int n = 10; n < ROW; n*=10)
+	for(int n = 10; n <= ROW; n*=10)
 	{
-		for(int m = 10; m < COL; m*=10)
+		for(int m = 10; m <= COL; m*=10)
 		{
 			double **A = get_matrix(m,n);
 			double **B = get_matrix(n,m);

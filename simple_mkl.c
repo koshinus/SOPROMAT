@@ -5,7 +5,7 @@
 #include <omp.h>
 #include <mkl.h>
 #define EXPERIMENTS_NUM  10
-#define ARRAY_SIZE 10000
+#define ARRAY_SIZE 100000000
 
 void simple_mkl()
 {
@@ -16,7 +16,7 @@ void simple_mkl()
         printf("Can't open file %s.\n", results_file);
         exit(1);
     }*/
-    for(int i = 10; i < ARRAY_SIZE; i*=10)
+    for(int i = 10; i <= ARRAY_SIZE; i*=10)
     {
         VSLStreamStatePtr stream;
         vslNewStream( &stream, VSL_BRNG_MT19937, i*time(0) );
@@ -41,7 +41,18 @@ void simple_mkl()
 		vdSqr(i, ar1, ar6);
 	}
         double end = omp_get_wtime();
-        free(ar1); free(ar2); free(ar3); free(ar4); free(ar5); free(ar6);
+        free(ar1);
+        //if(i >= 1000000) printf("free ar1\n");
+        free(ar2);
+        //if(i >= 1000000) printf("free ar2\n");
+        free(ar3);
+        //if(i >= 1000000) printf("free ar3\n");
+        free(ar4);
+        //if(i >= 1000000) printf("free ar4\n");
+        free(ar5);
+        //if(i >= 1000000) printf("free ar5\n");
+        free(ar6);
+        //if(i >= 1000000) printf("free ar6\n");
         //fprintf(res, "%lf\n", end-start);
         printf("%lf\n", end-start);
         vslDeleteStream( &stream );

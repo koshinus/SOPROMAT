@@ -1,7 +1,7 @@
 CC=icc
 CFLAGS=-c -Wall
 LDFLAGS=
-FLAGS=-std=c99 -mkl -openmp -O3 -ipo
+FLAGS=-std=c99 -mkl -openmp -O3 -ipo -mmic
 SOURCES=main.c simple_omp.c simple_mkl.c hard_omp.c hard_mkl.c mult_mat_vec_mkl.c mult_mat_vec_omp.c support_func.c mat_x_mat_mkl.c mat_x_mat_omp.c func.h
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=main.x
