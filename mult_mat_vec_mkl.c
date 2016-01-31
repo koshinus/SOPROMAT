@@ -28,7 +28,7 @@ void mult_mat_vec_mkl()
 			cblas_dgemv(CblasRowMajor, CblasNoTrans, i, j, 1.0, A, j, X, 1, 1.0, Y, 1);
 			double end = omp_get_wtime();
 			//fprintf(res, "%lf\n", end-start);
-			printf("%lf\n", end-start);
+			printf("%lf, n*m=%d*%d\n", end-start, i, j);
 			free(X); free(Y); free(A);
 		}
 	}

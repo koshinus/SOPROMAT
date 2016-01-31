@@ -31,7 +31,7 @@ void mult_mat_vec_omp()
 					Y[s] += A[s][t]*X[t];
 			double end = omp_get_wtime();
 			//fprintf(res, "%lf\n", end-start);
-			printf("%lf\n", end-start);
+			printf("%lf, n*m=%d*%d\n", end-start, i, j);
 			free(X); free(Y);
 			for(int s = 0; s < i; s++)
 				free(A[s]);

@@ -54,7 +54,7 @@ void simple_mkl()
         free(ar6);
         //if(i >= 1000000) printf("free ar6\n");
         //fprintf(res, "%lf\n", end-start);
-        printf("%lf\n", end-start);
+        printf("%lf, i=%d\n", end-start, i);
         vslDeleteStream( &stream );
     }
     //fclose(res);

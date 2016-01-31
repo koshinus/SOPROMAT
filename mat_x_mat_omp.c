@@ -34,7 +34,7 @@ void mat_x_mat_omp()
 						C[i][j] += A[i][k]*B[k][j];
 			double end = omp_get_wtime();
 			//fprintf(res, "%lf\n", end-start);
-			printf("%lf\n", end-start);
+			printf("%lf, n*m=%d*%d\n", end-start, n, m);
 			for(int s = 0; s < m; s++)
 			{
 				free(A[s]);

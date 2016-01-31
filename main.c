@@ -19,5 +19,9 @@ int main()
     simple_omp();
     printf("simple_mkl:\n");
     simple_mkl();
+    printf("simple_no_omp:\n");
+    simple_no_omp();
+    printf("hard_no_omp:\n");
+    hard_no_omp();
     return 0;
 }

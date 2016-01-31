@@ -29,7 +29,7 @@ void mat_x_mat_mkl()
 			cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, m, m, n, 1.0, A, n, B, m, 0.0, C, m);
 			double end = omp_get_wtime();
 			//fprintf(res, "%lf\n", end-start);
-			printf("%lf\n", end-start);
+			printf("%lf, n*m=%d*%d\n", end-start, n, m);
 			free(A);
 			//if(m >= COL) printf("free A\n");
 			free(B);

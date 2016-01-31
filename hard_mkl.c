@@ -42,7 +42,7 @@ void hard_mkl()
 	double end = omp_get_wtime();
 	free(ar1); free(ar2); free(ar3); free(ar4); free(ar5); free(ar6);
 	//fprintf(res, "%lf\n", end-start);
-	printf("%lf\n", end-start);
+	printf("%lf, i=%d\n", end-start, i);
 	vslDeleteStream( &stream );
     }
     //fclose(res);
