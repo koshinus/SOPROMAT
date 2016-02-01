@@ -20,32 +20,30 @@ void hard_no_omp()
     {
 	VSLStreamStatePtr stream;
         vslNewStream( &stream, VSL_BRNG_MT19937, i*time(0) );
-        double *ar1, *ar2, *ar3, *ar4;
+        double *ar1, *ar2, *ar3, *ar4, *ar5, *ar6;
         ar1 = (double *)malloc(i*sizeof(double));
         ar2 = (double *)malloc(i*sizeof(double));
         ar3 = (double *)malloc(i*sizeof(double));
         ar4 = (double *)malloc(i*sizeof(double));
+        ar5 = (double *)malloc(i*sizeof(double));
+        ar6 = (double *)malloc(i*sizeof(double));
         vdRngGaussian( VSL_RNG_METHOD_GAUSSIAN_BOXMULLER, stream,
-    			i, ar1, 1.0, 3.0 );
+                    	i, ar1, 1.0, 3.0 );
         vdRngGaussian( VSL_RNG_METHOD_GAUSSIAN_BOXMULLER, stream,
-            		i, ar2, 1.0, 3.0 );
-        vdRngGaussian( VSL_RNG_METHOD_GAUSSIAN_BOXMULLER, stream,
-                        i, ar3, 1.0, 3.0 );
-        vdRngGaussian( VSL_RNG_METHOD_GAUSSIAN_BOXMULLER, stream,
-                        i, ar4, 1.0, 3.0 );
+        		i, ar2, 1.0, 3.0 );
         double start = omp_get_wtime();
         for(int j = 0; j < EXPERIMENTS_NUM; j++)
         {
             for(int k = 0; k < i; k++)
             {
-                ar1[k] = cos(ar1[k]);
-                ar2[k] = log(ar2[k]);
-    	        ar3[k] = pow(ar3[k], k%4 - 2);
-                ar4[k] = cosh(ar4[k]);
+                ar3[k] = cos(ar1[k]);
+                ar4[k] = log(ar2[k]);
+                ar5[k] = pow(ar1[k], ar2[k]);
+                ar6[k] = cosh(ar1[k]);
             }
         }
         double end = omp_get_wtime();
-        free(ar1); free(ar2); free(ar3); free(ar4);
+        free(ar1); free(ar2); free(ar3); free(ar4); free(ar5); free(ar6);
         //fprintf(res, "%lf\n", end-start);
         printf("%lf, i=%d\n", end-start, i);
         vslDeleteStream( &stream );
