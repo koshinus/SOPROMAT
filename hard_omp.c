@@ -34,7 +34,7 @@ void hard_omp()
         double start = omp_get_wtime();
         for(int j = 0; j < EXPERIMENTS_NUM; j++)
         {
-    	    #pragma omp parallel for shared(ar1,ar2,ar3,ar4)
+    	    #pragma omp parallel for shared(ar1,ar2,ar3,ar4,ar5,ar6)
             for(int k = 0; k < i; k++)
             {
                 ar3[k] = cos(ar1[k]);
